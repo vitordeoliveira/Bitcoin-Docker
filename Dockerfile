@@ -13,8 +13,11 @@ RUN apt-get update && \
     apt-get install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libevent-dev libboost-dev && \
     # SQLite is required for the descriptor wallet:
     apt-get install -y libsqlite3-dev && \
-    # GUI dependenciesGUI dependencies
-    # apt-get install -y libsqlite3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libqrencode-dev qtwayland5
+    # Generate QRCode
+    apt-get install -y libqrencode-dev
+    
+# GUI dependenciesGUI dependencies
+# RUN apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtwayland5
 # Download and install Electrum
 RUN git clone https://github.com/bitcoin/bitcoin.git .
 RUN git fetch origin
