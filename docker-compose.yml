@@ -13,10 +13,14 @@ services:
     build:
       context: .
       dockerfile: ./lnd/Dockerfile
+    volumes: 
+      - ./lnd.conf:/lnd/lnd.conf
   ldn2:
     build:
       context: .
       dockerfile: ./lnd2/Dockerfile
+    volumes: 
+      - ./lnd2.conf:/lnd/lnd.conf
     ports:
       - "9734:9734"
       - "11009:11009"
