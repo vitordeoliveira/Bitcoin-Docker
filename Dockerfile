@@ -13,8 +13,10 @@ RUN apt-get update && \
     apt-get install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libevent-dev libboost-dev && \
     # SQLite is required for the descriptor wallet:
     apt-get install -y libsqlite3-dev && \
+    # ZMQ dependencies (provides ZMQ API):
+    apt-get install -y libzmq3-dev && \
     # Generate QRCode
-    apt-get install -y libqrencode-dev
+    apt-get install -y libqrencode-dev 
     
 # GUI dependenciesGUI dependencies
 # RUN apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtwayland5
@@ -29,19 +31,24 @@ RUN make
 RUN make install
 
 RUN rm -rf /bitcoin
+
+RUN echo 'bitcoin-cli -datadir=."' >> ~/.bashrc
 WORKDIR /usr/src/app
 
 # Create data directory and configuration file
-COPY bitcoin.conf bitcoin.conf
+# COPY bitcoin.conf bitcoin.conf
 
-# Expose port 18332 and for BTC testnet protocol
-EXPOSE 18332
-
+# Expose port 18332 and for BTC testnet protocol 28332 and 28332 for the ZeroMq
+EXPOSE 18332 28332 28333
 
 # For Debug Network if needs
 # RUN apt-get -y install net-tools tcpdump netcat
 # RUN apt install -y apache2 
 # RUN apt install -y apache2-utils 
+
+# Create wallet
+# RUN bitcoin-cli -datadir=. createwallet mywallet
+# RUN bitcoin-cli -generate 10
 
 # Start BTC in daemon mode
 CMD ["bitcoind", "--datadir=."]

@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  bitcoin-core:
+    volumes: 
+      - ./bitcoin.conf:/usr/src/app/bitcoin.conf
+    build: .
+    ports:
+      - "28332:28332"
+      - "28333:28333"
+      - "18332:18332"
+  ldn:
+    build:
+      context: .
+      dockerfile: ./lnd/Dockerfile
+  ldn2:
+    build:
+      context: .
+      dockerfile: ./lnd2/Dockerfile
+    ports:
+      - "9734:9734"
+      - "11009:11009"
+      - "8180:8180"
