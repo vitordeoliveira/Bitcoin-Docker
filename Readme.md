@@ -13,6 +13,7 @@ bitcoin-cli --datadir=. createwallet testwtwo false true k3YQN3JOtyHMlRCg4v4
 bitcoin-cli -testnet getnetworkinfo
 bitcoin-cli --datadir=. help createwallet
 bitcoin-cli -testnet -rpcuser=myusername -rpcpassword=mypassword help
+bitcoin-cli getpeerinfo
 bitcoin-cli --datadir=/usr/src/app help
 bitcoin-cli --datadir=. help
 bitcoind help
