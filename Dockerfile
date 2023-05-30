@@ -32,7 +32,7 @@ RUN make install
 
 RUN rm -rf /bitcoin
 
-RUN echo 'bitcoin-cli -datadir=."' >> ~/.bashrc
+# RUN echo 'bitcoin-cli -datadir=."' >> ~/.bashrc
 WORKDIR /usr/src/app
 
 # Create data directory and configuration file
